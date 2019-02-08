@@ -2,6 +2,8 @@ import os
 import sys
 import arcpy
 #git add -A (for add all)
+#git checkout -b crazycode
+#switch to a new branch named crazycode
 from arcpy import env
 env.overwriteOutput = True
 
