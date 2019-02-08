@@ -4,6 +4,9 @@ import arcpy
 #git add -A (for add all)
 #git checkout -b crazycode
 #switch to a new branch named crazycode
+#git push origin master change to git push origin crazycode
+#git checkout master to switch to master branch
+#git merge crazycode to merge branch
 from arcpy import env
 env.overwriteOutput = True
 
