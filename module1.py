@@ -1,7 +1,7 @@
 import os
 import sys
 import arcpy
-
+#git add -A (for add all)
 from arcpy import env
 env.overwriteOutput = True
 
@@ -76,11 +76,13 @@ arcpy.AddField_management(fc_path,'ESRIGNSS_CORRECTIONAGE','DOUBLE','','','','Co
 arcpy.AddField_management(fc_path,'ESRIGNSS_STATIONID','SHORT','','','','Station ID','NULLABLE','NON_REQUIRED','' )
 arcpy.AddField_management(fc_path,'ESRIGNSS_NUMSATS','SHORT','','','','Number of Satellites','NULLABLE','NON_REQUIRED','' )
 arcpy.AddField_management(fc_path,'ESRIGNSS_FIXDATETIME','DATE','','','','Fix Time','NULLABLE','NON_REQUIRED','' )
+arcpy.AddField_management(fc_path,'ESRIGNSS_CONDITION','SHORT','','','','Condition','NULLABLE','NON_REQUIRED','' )
    
 #assign field to domain
 arcpy.AssignDomainToField_management( fc_path, 'ESRIGNSS_FIXTYPE', 'GNSSFixType')
 arcpy.AssignDomainToField_management( fc_path, 'ESRIGNSS_STATIONID', 'NumStationID')
 arcpy.AssignDomainToField_management( fc_path, 'ESRIGNSS_NUMSATS', 'NumSatellites')
+arcpy.AssignDomainToField_management( fc_path, 'ESRIGNSS_CONDITION', 'Conditions')
 
 print('Done adding field information')
 
