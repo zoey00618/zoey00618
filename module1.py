@@ -37,54 +37,6 @@ arcpy.AddCodedValueToDomain_management(workspace_path, 'Conditions', 4, 'highlyo
 
 arcpy.CreateDomain_management(workspace_path, "NumSatellites", "NumSatellites", "SHORT", "RANGE", "DEFAULT", "DEFAULT")
 arcpy.SetValueForRangeDomain_management(workspace_path, "NumSatellites", 0, 99)
-    
-arcpy.CreateDomain_management(workspace_path, "NumStationID", "NumStationID", "SHORT", "RANGE", "DEFAULT", "DEFAULT")
-arcpy.SetValueForRangeDomain_management(workspace_path, "NumStationID", 0, 1023)
-        
-print('Done adding Domains')
-
-#Create the Feature Class
-arcpy.CreateFeatureclass_management(out_path=workspace_path
-                                    , out_name=fc_name
-                                    , geometry_type="POINT"
-                                    , template=""
-                                    , has_m="DISABLED"
-                                    , has_z="DISABLED"
-                                    , spatial_reference=SRDefinition
-                                    , config_keyword=""
-                                    , spatial_grid_1="0"
-                                    , spatial_grid_2="0"
-                                    , spatial_grid_3="0"
-                                    )
-print('Done creating feature class')
-    
-#add data field here
-arcpy.AddField_management(fc_path,'FIELDNOTES','TEXT','','','500','Field Notes','NULLABLE','NON_REQUIRED','' )
-    
-#add GPS Metadata field information
-arcpy.AddField_management(fc_path,'ESRIGNSS_RECEIVER','TEXT','','','50','Receiver Name','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_H_RMS','DOUBLE','','','','Horizontal Accuracy','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_V_RMS','DOUBLE','','','','Vertical Accuracy','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_LATITUDE','DOUBLE','','','','Latitude','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_LONGITUDE','DOUBLE','','','','Longitude','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_ALTITUDE','DOUBLE','','','','Altitude','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_PDOP','DOUBLE','','','','PDOP','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_HDOP','DOUBLE','','','','HDOP','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_VDOP','DOUBLE','','','','VDOP','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_FIXTYPE','SHORT','','','','Fix Type','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_CORRECTIONAGE','DOUBLE','','','','Correction Age','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_STATIONID','SHORT','','','','Station ID','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_NUMSATS','SHORT','','','','Number of Satellites','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_FIXDATETIME','DATE','','','','Fix Time','NULLABLE','NON_REQUIRED','' )
-arcpy.AddField_management(fc_path,'ESRIGNSS_CONDITION','SHORT','','','','Condition','NULLABLE','NON_REQUIRED','' )
-   
-#assign field to domain
-arcpy.AssignDomainToField_management( fc_path, 'ESRIGNSS_FIXTYPE', 'GNSSFixType')
-arcpy.AssignDomainToField_management( fc_path, 'ESRIGNSS_STATIONID', 'NumStationID')
-arcpy.AssignDomainToField_management( fc_path, 'ESRIGNSS_NUMSATS', 'NumSatellites')
-arcpy.AssignDomainToField_management( fc_path, 'ESRIGNSS_CONDITION', 'Conditions')
-
-print('Done adding field information')
 
 print('All done. Your fgdb was created at ' + workspace_path)
 print('Your feature class is called ' + fc_name)
